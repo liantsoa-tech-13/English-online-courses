@@ -1,4 +1,4 @@
 CREATE TABLE role (
-                      role_id SERIAL PRIMARY KEY,
-                      name VARCHAR UNIQUE NOT NULL CHECK (name IN ('ADMIN','USER'))  -- 'ADMIN', 'USER', etc.
+    role_id BIGSERIAL PRIMARY KEY,
+    name VARCHAR UNIQUE NOT NULL CHECK (name IN ('ADMIN','USER'))  -- 'ADMIN', 'USER', etc.
 );

@@ -1,5 +1,6 @@
 CREATE TABLE lesson (
-    lesson_id SERIAL PRIMARY KEY,
+    lesson_id BIGSERIAL PRIMARY KEY,
+    public_id VARCHAR(50) UNIQUE NOT NULL DEFAULT ('LES-' || gen_random_uuid()),
     level_id INT NOT NULL REFERENCES level(level_id) ON DELETE CASCADE,
     title VARCHAR NOT NULL,
     description TEXT,

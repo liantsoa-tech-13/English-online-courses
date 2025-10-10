@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS question (
-    question_id SERIAL PRIMARY KEY,
+    question_id BIGSERIAL PRIMARY KEY,
     test_id INT NOT NULL REFERENCES test(test_id) ON DELETE CASCADE,
     question_text TEXT NOT NULL,
     correct_answer TEXT NOT NULL,  -- used for validation

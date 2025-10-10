@@ -1,5 +1,6 @@
 CREATE TABLE exercise_question (
-    question_id SERIAL PRIMARY KEY,
+    question_id BIGSERIAL PRIMARY KEY,
+    public_id VARCHAR(50) UNIQUE NOT NULL DEFAULT ('EQ-' || gen_random_uuid()),
     exercise_id INT NOT NULL REFERENCES exercise(exercise_id) ON DELETE CASCADE,
     question_text TEXT NOT NULL,
     correct_answer TEXT NOT NULL,

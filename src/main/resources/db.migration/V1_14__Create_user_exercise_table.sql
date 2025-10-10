@@ -1,5 +1,6 @@
 CREATE TABLE user_exercise (
-    user_exercise_id SERIAL PRIMARY KEY,
+    user_exercise_id BIGSERIAL PRIMARY KEY,
+    public_id VARCHAR(50) UNIQUE NOT NULL DEFAULT ('UEX-' || gen_random_uuid()),
     user_id INT NOT NULL REFERENCES "user"(user_id) ON DELETE CASCADE,
     exercise_id INT NOT NULL REFERENCES exercise(exercise_id) ON DELETE CASCADE,
     started_at TIMESTAMP DEFAULT NOW(),

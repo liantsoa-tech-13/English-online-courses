@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS test (
-    test_id SERIAL PRIMARY KEY,
+    test_id BIGSERIAL PRIMARY KEY,
+    public_id VARCHAR(50) UNIQUE NOT NULL DEFAULT ('TST-' || gen_random_uuid()),
     level_id INT NOT NULL REFERENCES level(level_id) ON DELETE CASCADE,
     title VARCHAR NOT NULL,
     passing_score INT DEFAULT 10,
