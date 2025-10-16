@@ -13,7 +13,8 @@ import java.time.Instant;
 @Table(name = "\"user\"")
 public class User {
     @Id
-    @ColumnDefault("nextval('user_user_id_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_gen")
+    @SequenceGenerator(name = "user_id_gen", sequenceName = "user_user_id_seq", allocationSize = 1)
     @Column(name = "user_id", nullable = false)
     private Long id;
 
@@ -21,8 +22,11 @@ public class User {
     @Column(name = "public_id", nullable = false, length = 50)
     private String publicId;
 
-    @Column(name = "fullname", nullable = false, length = Integer.MAX_VALUE)
-    private String fullname;
+    @Column(name = "firstname", length = 100)
+    private String firstname;
+
+    @Column(name = "lastname", length = 100)
+    private String lastname;
 
     @Column(name = "email", nullable = false, length = Integer.MAX_VALUE)
     private String email;
@@ -55,5 +59,4 @@ public class User {
 
     @Column(name = "updated_at")
     private Instant updatedAt;
-
 }
