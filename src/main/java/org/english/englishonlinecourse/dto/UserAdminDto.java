@@ -16,4 +16,7 @@ public class UserAdminDto {
     private Boolean emailVerified;
     private Instant createdAt;
     private Instant updatedAt;
+
+    public static class UserRepository {
+    }
 }
