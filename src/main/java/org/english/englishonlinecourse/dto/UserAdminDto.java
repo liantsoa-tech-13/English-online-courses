@@ -1,9 +1,13 @@
 package org.english.englishonlinecourse.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.english.englishonlinecourse.model.Role;
 
 import java.time.Instant;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserAdminDto {
     private Long id;
     private String firstname;
