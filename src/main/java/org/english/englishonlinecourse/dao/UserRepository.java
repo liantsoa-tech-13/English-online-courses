@@ -23,12 +23,16 @@ public class UserRepository {
             String roleName,
             String studentStatus,
             Boolean isActive,
-            Boolean emailVerified
+            Boolean emailVerified,
+            int page,
+            int size
     ) {
         QUser user = QUser.user;
         QRole role = QRole.role;
 
         BooleanBuilder builder = new BooleanBuilder();
+
+        int offset = (page - 1) * size;
 
         if (name != null && !name.isBlank()) {
             builder.and(user.firstname.concat(" ").concat(user.lastname).containsIgnoreCase(name));
@@ -68,6 +72,8 @@ public class UserRepository {
                 .leftJoin(user.role, role)
                 .where(builder)
                 .orderBy(user.createdAt.desc())
+                .limit(page)
+                .offset(offset)
                 .fetch();
     }
 }

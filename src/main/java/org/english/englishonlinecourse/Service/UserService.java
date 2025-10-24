@@ -19,9 +19,11 @@ public class UserService {
             String roleName,
             String studentStatus,
             Boolean isActive,
-            Boolean emailVerified
+            Boolean emailVerified,
+            int page,
+            int size
     ) {
-        return userRepository.findAllWithFilters(name, email, roleName, studentStatus, isActive, emailVerified);
+        return userRepository.findAllWithFilters(name, email, roleName, studentStatus, isActive, emailVerified, page, size);
     }
 }
 
