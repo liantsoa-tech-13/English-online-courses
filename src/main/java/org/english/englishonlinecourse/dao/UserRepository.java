@@ -72,7 +72,7 @@ public class UserRepository {
                 .leftJoin(user.role, role)
                 .where(builder)
                 .orderBy(user.createdAt.desc())
-                .limit(page)
+                .limit(size)
                 .offset(offset)
                 .fetch();
     }
