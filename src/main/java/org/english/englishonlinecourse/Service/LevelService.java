@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.english.englishonlinecourse.dao.LevelRepository;
 import org.english.englishonlinecourse.dto.LevelDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,5 +15,10 @@ public class LevelService {
 
     public List<LevelDto> findAllLevelName() {
         return levelRepository.findAllLevelName();
+    }
+
+    @Transactional
+    public long updateLevel(Long id, String name, String description) {
+        return levelRepository.updateLevelNameAndDescription(id, name, description);
     }
 }
