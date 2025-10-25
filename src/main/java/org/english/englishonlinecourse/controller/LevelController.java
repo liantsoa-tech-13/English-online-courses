@@ -3,6 +3,7 @@ package org.english.englishonlinecourse.controller;
 import lombok.RequiredArgsConstructor;
 import org.english.englishonlinecourse.Service.LevelService;
 import org.english.englishonlinecourse.dto.LevelDto;
+import org.english.englishonlinecourse.dto.LevelNameDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +21,9 @@ public class LevelController {
         return ResponseEntity.ok(levels);
     }
 
-    @GetMapping("/level/name")
-    public ResponseEntity<List<LevelDto>> getLevelsNAme(){
-        List<LevelDto> levelsName = levelService.findAllLevelName();
+    @GetMapping("/levels/name")
+    public ResponseEntity<List<LevelNameDto>> getLevelsNAme(){
+        List<LevelNameDto> levelsName = levelService.findAllLevelName();
         return ResponseEntity.ok(levelsName);
     }
 

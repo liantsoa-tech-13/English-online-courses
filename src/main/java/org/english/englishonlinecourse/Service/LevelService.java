@@ -3,6 +3,7 @@ package org.english.englishonlinecourse.Service;
 import lombok.RequiredArgsConstructor;
 import org.english.englishonlinecourse.dao.LevelRepository;
 import org.english.englishonlinecourse.dto.LevelDto;
+import org.english.englishonlinecourse.dto.LevelNameDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,7 @@ public class LevelService {
         return levelRepository.findAllLevels();
     }
 
-    public List<LevelDto> findAllLevelName() {
+    public List<LevelNameDto> findAllLevelName() {
         return levelRepository.findAllLevelName();
     }
 

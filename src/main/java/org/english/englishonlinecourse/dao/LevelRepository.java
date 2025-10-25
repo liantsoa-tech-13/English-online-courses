@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.english.englishonlinecourse.dto.LevelDto;
+import org.english.englishonlinecourse.dto.LevelNameDto;
 import org.english.englishonlinecourse.model.QLevel;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,12 +39,12 @@ public class LevelRepository {
                 .fetch();
     }
 
-    public List<LevelDto> findAllLevelName(){
+    public List<LevelNameDto> findAllLevelName(){
         QLevel level = QLevel.level;
 
         return queryFactory
                 .select(Projections.constructor(
-                        LevelDto.class,
+                        LevelNameDto.class,
                         level.id,
                         level.name
                 ))

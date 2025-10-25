@@ -11,10 +11,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Builder
-public class LevelDto {
+public class LevelNameDto {
     private Long id;
     private String name;
-    private String description;
-    private Instant createdAt;
-    private Instant updatedAt;
 }
