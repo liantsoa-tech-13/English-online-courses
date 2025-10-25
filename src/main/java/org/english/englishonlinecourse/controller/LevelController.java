@@ -1,4 +1,4 @@
-package org.english.englishonlinecourse.Controller;
+package org.english.englishonlinecourse.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.english.englishonlinecourse.Service.LevelService;
@@ -14,7 +14,7 @@ public class LevelController {
 
     private final LevelService levelService;
 
-    @GetMapping("/levels")
+    @GetMapping("/level/name")
     public ResponseEntity<List<LevelDto>> getLevelsNAme(){
         List<LevelDto> levelsName = levelService.findAllLevelName();
         return ResponseEntity.ok(levelsName);

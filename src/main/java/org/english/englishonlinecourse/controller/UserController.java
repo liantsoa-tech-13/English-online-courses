@@ -1,4 +1,4 @@
-package org.english.englishonlinecourse.Controller;
+package org.english.englishonlinecourse.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.english.englishonlinecourse.Service.UserService;
