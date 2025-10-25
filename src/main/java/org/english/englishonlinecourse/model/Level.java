@@ -22,8 +22,8 @@ public class Level {
     @Column(name = "level_id", nullable = false)
     private Long id;
 
+    @Column(name = "public_id", nullable = false, length = 50, insertable = false, updatable = false)
     @ColumnDefault("('LVL-'::text || gen_random_uuid())")
-    @Column(name = "public_id", nullable = false, length = 50)
     private String publicId;
 
     @Column(name = "name", nullable = false, length = Integer.MAX_VALUE)
@@ -38,5 +38,12 @@ public class Level {
 
     @Column(name = "updated_at")
     private Instant updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) {
+            createdAt = Instant.now();
+        }
+    }
 
 }

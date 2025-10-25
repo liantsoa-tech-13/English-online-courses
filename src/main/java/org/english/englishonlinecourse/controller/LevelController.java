@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.english.englishonlinecourse.Service.LevelService;
 import org.english.englishonlinecourse.dto.LevelDto;
 import org.english.englishonlinecourse.dto.LevelNameDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +46,11 @@ public class LevelController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("/level")
+    public ResponseEntity<LevelDto> createLevel(@RequestBody LevelDto levelDto) {
+        LevelDto createdLevel = levelService.createLevel(levelDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdLevel);
     }
 }
