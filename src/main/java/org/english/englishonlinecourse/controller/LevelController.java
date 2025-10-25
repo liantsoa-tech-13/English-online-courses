@@ -21,6 +21,12 @@ public class LevelController {
         return ResponseEntity.ok(levels);
     }
 
+    @GetMapping("/level/{id}")
+    public ResponseEntity<LevelDto> getLevelById(@PathVariable Long id) {
+        LevelDto levelDto = levelService.getLevelById(id);
+        return ResponseEntity.ok(levelDto);
+    }
+
     @GetMapping("/levels/name")
     public ResponseEntity<List<LevelNameDto>> getLevelsNAme(){
         List<LevelNameDto> levelsName = levelService.findAllLevelName();

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -37,6 +38,25 @@ public class LevelRepository {
                 .from(level)
                 .orderBy(level.id.asc())
                 .fetch();
+    }
+
+    public Optional<LevelDto> findLevelById(Long id) {
+        QLevel level = QLevel.level;
+
+        LevelDto result = queryFactory
+                .select(Projections.constructor(
+                        LevelDto.class,
+                        level.id,
+                        level.name,
+                        level.description,
+                        level.createdAt,
+                        level.updatedAt
+                ))
+                .from(level)
+                .where(level.id.eq(id))
+                .fetchOne();
+
+        return Optional.ofNullable(result);
     }
 
     public List<LevelNameDto> findAllLevelName(){

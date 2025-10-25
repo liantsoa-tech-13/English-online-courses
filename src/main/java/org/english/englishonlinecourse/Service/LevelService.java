@@ -18,6 +18,11 @@ public class LevelService {
         return levelRepository.findAllLevels();
     }
 
+    public LevelDto getLevelById(Long id) {
+        return levelRepository.findLevelById(id)
+                .orElseThrow(() -> new RuntimeException("Level not found with id: " + id));
+    }
+
     public List<LevelNameDto> findAllLevelName() {
         return levelRepository.findAllLevelName();
     }
