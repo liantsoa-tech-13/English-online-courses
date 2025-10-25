@@ -14,6 +14,12 @@ public class LevelController {
 
     private final LevelService levelService;
 
+    @GetMapping("/levels")
+    public ResponseEntity<List<LevelDto>> getAllLevels(){
+        List<LevelDto> levels = levelService.findAllLevels();
+        return ResponseEntity.ok(levels);
+    }
+
     @GetMapping("/level/name")
     public ResponseEntity<List<LevelDto>> getLevelsNAme(){
         List<LevelDto> levelsName = levelService.findAllLevelName();

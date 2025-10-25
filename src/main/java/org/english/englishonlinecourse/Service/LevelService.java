@@ -13,6 +13,10 @@ import java.util.List;
 public class LevelService {
     private final LevelRepository levelRepository;
 
+    public List<LevelDto> findAllLevels(){
+        return levelRepository.findAllLevels();
+    }
+
     public List<LevelDto> findAllLevelName() {
         return levelRepository.findAllLevelName();
     }

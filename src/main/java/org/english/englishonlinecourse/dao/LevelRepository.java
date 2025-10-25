@@ -21,6 +21,23 @@ public class LevelRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    public List<LevelDto> findAllLevels(){
+        QLevel level = QLevel.level;
+
+        return queryFactory
+                .select(Projections.constructor(
+                        LevelDto.class,
+                        level.id,
+                        level.name,
+                        level.description,
+                        level.createdAt,
+                        level.createdAt
+                ))
+                .from(level)
+                .orderBy(level.id.asc())
+                .fetch();
+    }
+
     public List<LevelDto> findAllLevelName(){
         QLevel level = QLevel.level;
 
