@@ -39,6 +39,10 @@ public class Level {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @Column(name = "status", nullable = false, length = 20)
+    @ColumnDefault("'DRAFT'")
+    private String status = "DRAFT";
+
     @PrePersist
     public void prePersist() {
         if (createdAt == null) {
