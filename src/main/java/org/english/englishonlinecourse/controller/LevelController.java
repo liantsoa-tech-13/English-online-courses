@@ -2,8 +2,10 @@ package org.english.englishonlinecourse.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.english.englishonlinecourse.Service.LevelService;
+import org.english.englishonlinecourse.dto.LevelCreationDto;
 import org.english.englishonlinecourse.dto.LevelDto;
 import org.english.englishonlinecourse.dto.LevelNameDto;
+import org.english.englishonlinecourse.model.Level;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +19,8 @@ public class LevelController {
     private final LevelService levelService;
 
     @GetMapping("/levels")
-    public ResponseEntity<List<LevelDto>> getAllLevels(){
-        List<LevelDto> levels = levelService.findAllLevels();
+    public ResponseEntity<List<LevelDto>> getAllLevelDetails(){
+        List<LevelDto> levels = levelService.findAllLevelDetails();
         return ResponseEntity.ok(levels);
     }
 
@@ -28,29 +30,18 @@ public class LevelController {
         return ResponseEntity.ok(levelDto);
     }
 
-    @GetMapping("/levels/name")
-    public ResponseEntity<List<LevelNameDto>> getLevelsNAme(){
-        List<LevelNameDto> levelsName = levelService.findAllLevelName();
-        return ResponseEntity.ok(levelsName);
-    }
-
     @PutMapping("/level/{id}")
-    public ResponseEntity<String> updateLevel(
+    public ResponseEntity<Level> updateLevel(
             @PathVariable Long id,
-            @RequestBody LevelDto levelDto) {
-
-        long updatedCount = levelService.updateLevel(id, levelDto.getName(), levelDto.getDescription());
-
-        if (updatedCount == 1) {
-            return ResponseEntity.ok("Level updated successfully");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+            @RequestBody LevelDto dto
+    ) {
+        Level updated = levelService.updateLevel(id, dto.getName(), dto.getDescription(), dto.getStatus());
+        return ResponseEntity.ok(updated);
     }
 
     @PostMapping("/level")
-    public ResponseEntity<LevelDto> createLevel(@RequestBody LevelDto levelDto) {
-        LevelDto createdLevel = levelService.createLevel(levelDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdLevel);
+    public ResponseEntity<Level> createLevel(@RequestBody LevelCreationDto dto) {
+        Level level = levelService.createLevel(dto);
+        return ResponseEntity.ok(level);
     }
 }

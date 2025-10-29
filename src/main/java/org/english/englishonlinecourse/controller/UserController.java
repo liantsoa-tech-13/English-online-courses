@@ -27,7 +27,7 @@ public class UserController {
             @RequestParam(required = false) Boolean isActive,
             @RequestParam(required = false) Boolean emailVerified,
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "5") int size
     ) {
         List<UserAdminDto> users = userService.findAllWithFilters(name, email, role, studentStatus, isActive, emailVerified, page, size);
         return ResponseEntity.ok(users);

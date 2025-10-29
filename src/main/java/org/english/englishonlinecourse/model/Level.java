@@ -33,21 +33,13 @@ public class Level {
     private String description;
 
     @ColumnDefault("now()")
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", insertable = false)
     private Instant updatedAt;
 
     @Column(name = "status", nullable = false, length = 20)
     @ColumnDefault("'DRAFT'")
     private String status = "DRAFT";
-
-    @PrePersist
-    public void prePersist() {
-        if (createdAt == null) {
-            createdAt = Instant.now();
-        }
-    }
-
 }
