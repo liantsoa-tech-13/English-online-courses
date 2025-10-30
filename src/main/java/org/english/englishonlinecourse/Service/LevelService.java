@@ -47,8 +47,8 @@ public class LevelService {
             level.setStatus(status);
         }
 
-        levelRepository.saveAndFlush(level);       // save changes first
-        entityManager.refresh(level);      // then reload DB-triggered fields like updatedAt
+        levelRepository.saveAndFlush(level);
+        entityManager.refresh(level);
         return level;
     }
 
