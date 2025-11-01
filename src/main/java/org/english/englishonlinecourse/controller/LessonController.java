@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/levels")
+@RequestMapping("/level")
 public class LessonController {
     private final LessonService lessonService;
 
-    @GetMapping
+    @GetMapping("{levelId}/lessons")
     public List<LessonDto> getLessonsByLevel(
             @PathVariable Long levelId,
             @RequestParam(required = false) Long createdBy,
