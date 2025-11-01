@@ -12,12 +12,7 @@ import java.util.List;
 public class LessonService {
     public final LessonRepositoryCustomImpl lessonRepositoryCustom;
 
-    public List<LessonDto> getLessonsByLevel(
-            Long levelId,
-            Long createdBy,
-            String search,
-            Boolean orderByUpdatedAt
-    ) {
-        return lessonRepositoryCustom.findLessonsByLevelWithFilters(levelId, createdBy, search, orderByUpdatedAt);
+    public List<LessonDto> getLessonsByLevel(Long levelId, Long createdBy, String searchTitle, String updatedAtOrder) {
+        return lessonRepositoryCustom.findLessonsByLevelWithFilters(levelId, createdBy, searchTitle, updatedAtOrder);
     }
 }

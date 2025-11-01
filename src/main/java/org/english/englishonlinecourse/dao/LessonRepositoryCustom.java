@@ -5,5 +5,5 @@ import org.english.englishonlinecourse.dto.LessonDto;
 import java.util.List;
 
 public interface LessonRepositoryCustom {
-    List<LessonDto> findLessonsByLevelWithFilters(Long levelId, Long createdBy, String searchTitle, Boolean orderByUpdatedAt);
+    List<LessonDto> findLessonsByLevelWithFilters(Long levelId, Long createdBy, String searchTitle, String uptadedAtOrder);
 }

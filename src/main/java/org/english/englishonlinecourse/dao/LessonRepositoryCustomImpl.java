@@ -16,7 +16,12 @@ public class LessonRepositoryCustomImpl implements LessonRepositoryCustom{
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<LessonDto> findLessonsByLevelWithFilters(Long levelId, Long createdBy, String searchTitle, Boolean orderByUpdatedAt) {
+    public List<LessonDto> findLessonsByLevelWithFilters(
+            Long levelId,
+            Long createdBy,
+            String searchTitle,
+            String updatedAtOrder
+    ) {
         QLesson lesson = QLesson.lesson;
 
         BooleanExpression whereClause = lesson.level.id.eq(levelId);
@@ -34,17 +39,22 @@ public class LessonRepositoryCustomImpl implements LessonRepositoryCustom{
                         LessonDto.class,
                         lesson.id.as("id"),
                         lesson.title.as("title"),
+                        lesson.description.as("description"),
                         lesson.isSample.as("isSample"),
                         lesson.position.as("position"),
                         lesson.updatedAt.as("updatedAt"),
                         lesson.createdBy.id.as("createdBy")
                 ))
                 .from(lesson)
-                .where(whereClause)
-                .orderBy(orderByUpdatedAt != null && orderByUpdatedAt
-                        ? lesson.updatedAt.asc()
-                        : lesson.position.asc()
-                );
+                .where(whereClause);
+
+        if ("asc".equalsIgnoreCase(updatedAtOrder)) {
+            query.orderBy(lesson.position.asc(), lesson.updatedAt.asc());
+        } else if ("desc".equalsIgnoreCase(updatedAtOrder)) {
+            query.orderBy(lesson.position.asc(), lesson.updatedAt.desc());
+        } else {
+            query.orderBy(lesson.position.asc());
+        }
 
         return query.fetch();
     }

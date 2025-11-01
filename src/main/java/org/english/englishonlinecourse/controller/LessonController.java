@@ -14,13 +14,13 @@ import java.util.List;
 public class LessonController {
     private final LessonService lessonService;
 
-    @GetMapping("/{levelId}/lessons")
+    @GetMapping
     public List<LessonDto> getLessonsByLevel(
             @PathVariable Long levelId,
             @RequestParam(required = false) Long createdBy,
-            @RequestParam(required = false) String search,
-            @RequestParam(required = false, defaultValue = "false") Boolean orderByUpdatedAt
+            @RequestParam(required = false) String searchTitle,
+            @RequestParam(required = false) String updatedAtOrder
     ) {
-        return lessonService.getLessonsByLevel(levelId, createdBy, search, orderByUpdatedAt);
+        return lessonService.getLessonsByLevel(levelId, createdBy, searchTitle, updatedAtOrder);
     }
 }
