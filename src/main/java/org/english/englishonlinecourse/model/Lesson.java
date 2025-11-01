@@ -53,6 +53,9 @@ public class Lesson {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @Column(name = "status")
+    private String status;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by")
     private User createdBy;

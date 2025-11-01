@@ -11,7 +11,6 @@ import java.time.Instant;
 @Setter
 @Builder
 public class LessonDto {
-    private Long id;
     private String title;
     private Boolean isSample;
     private Integer position;
